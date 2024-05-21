@@ -8,7 +8,7 @@ test('renders NavItems', () => {
 
   const navLinks = screen.getAllByRole('link');
 
-  expect(screen.getByRole('list')).toBeInTheDocument();
+  expect(screen.getByRole('navigation')).toBeInTheDocument();
   expect(navLinks).toHaveLength(2);
   expect(screen.getByText('Home')).toBeInTheDocument();
   expect(screen.getByText('Collections')).toBeInTheDocument();
