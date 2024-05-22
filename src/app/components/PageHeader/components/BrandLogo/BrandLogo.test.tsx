@@ -6,6 +6,7 @@ import BrandLogo from './BrandLogo';
 test('renders BrandLogo', () => {
   render(<BrandLogo />);
 
-  expect(screen.getByRole('paragraph')).toBeInTheDocument();
+  expect(screen.getByRole('link')).toBeInTheDocument();
   expect(screen.getByTestId('box-icon')).toBeInTheDocument();
+  expect(screen.getByRole('paragraph')).toBeInTheDocument();
 });
