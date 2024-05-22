@@ -18,7 +18,11 @@ import {
   SearchFormSchemaProps,
 } from '@/validations/SearchFormValidation';
 
-function SearchForm() {
+type SearchFormProps = {
+  size?: 'sm' | 'lg';
+};
+
+function SearchForm({ size = 'lg' }: SearchFormProps) {
   const form = useForm<SearchFormSchemaProps>({
     resolver: zodResolver(searchFormSchema),
     defaultValues: {
@@ -34,7 +38,7 @@ function SearchForm() {
     <Form {...form}>
       <form
         name='search-form'
-        className='relative'
+        className={`relative ${size === 'sm' ? 'hidden min-w-[clamp(21rem,32.5dvw,28rem)] lg:block' : null}`}
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
@@ -44,18 +48,18 @@ function SearchForm() {
             <FormItem>
               <FormControl>
                 <Input
-                  className='pl-12 font-light shadow'
+                  className={`pl-12 font-light shadow ${size === 'sm' ? 'h-10' : null}`}
                   type='search'
-                  placeholder='Enter your keywords...'
+                  placeholder={`${size === 'lg' ? 'Enter your keywords...' : 'Search high-resolution images'}`}
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              {size === 'lg' ? <FormMessage /> : null}
             </FormItem>
           )}
         />
         <Button
-          className='absolute left-0 top-0 h-14 pl-4'
+          className={`absolute left-0 top-0 pl-4 ${size === 'lg' ? 'h-14' : 'h-10'}`}
           size={null}
           type='submit'
           variant={null}
