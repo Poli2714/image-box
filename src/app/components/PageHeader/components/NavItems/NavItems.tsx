@@ -13,7 +13,7 @@ const navItems = [
 
 function NavItems() {
   return (
-    <nav className='hidden sm:block'>
+    <nav className='ml-auto hidden sm:block'>
       <ul className='flex items-center space-x-2'>
         {navItems.map((item, i) => (
           <li className='text-secondary-foreground' key={i}>

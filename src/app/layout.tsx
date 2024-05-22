@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={beVietnamPro.className}>
+      <body className={`${beVietnamPro.className} flex min-h-dvh flex-col`}>
         <PageHeader />
         {children}
       </body>
