@@ -1,3 +1,4 @@
 import PageHeader from './PageHeader/PageHeader';
+import PageHero from './PageHero/PageHero';
 
-export { PageHeader };
+export { PageHeader, PageHero };
