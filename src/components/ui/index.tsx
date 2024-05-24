@@ -6,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import PhotoGrid from './PhotoGrid/PhotoGrid';
+import { Skeleton } from './skeleton';
 
 export {
   Button,
@@ -14,4 +15,5 @@ export {
   DropdownMenuItem,
   DropdownMenuTrigger,
   PhotoGrid,
+  Skeleton,
 };

@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import { PhotoGrid } from '@/components/ui';
 
@@ -17,6 +17,8 @@ async function SearchKeyword({ params }: SearchKeywordProps) {
   if (formattedSlug.length === 0) redirect('/search');
 
   const photos = await getPhotos(formattedSlug);
+
+  if (photos.length === 0) notFound();
 
   const photoUrls = photos.map((photo) => photo.urls.thumb);
   const base64results = await getAllBase64(photoUrls);
