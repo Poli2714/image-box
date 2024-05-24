@@ -9,8 +9,8 @@ export const getBase64 = async (src: string) => {
 };
 
 export const getAllBase64 = async (photoUrls: Array<string>) => {
-  const base84Data = photoUrls.map((url) => getBase64(url));
-  const base84results = await Promise.all(base84Data);
+  const base64Data = photoUrls.map((url) => getBase64(url));
+  const base64results = await Promise.all(base64Data);
 
-  return base84results;
+  return base64results;
 };
