@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import { SearchXIcon } from 'lucide-react';
 
-import { Button } from '@/components/ui';
+import { ReturnHome } from '@/components/ui';
 
 export default function SearchResultNotFound() {
   return (
@@ -10,9 +9,7 @@ export default function SearchResultNotFound() {
       <p className='text-center font-light'>
         Unfortunately, there are no photos with the requested keyword
       </p>
-      <Button asChild>
-        <Link href='/'>Return Home</Link>
-      </Button>
+      <ReturnHome />
     </div>
   );
 }
