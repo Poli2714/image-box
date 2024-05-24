@@ -1,2 +1,2 @@
 export const formatSlug = (slug: string) =>
-  slug.trim().replaceAll('-', ' ').replaceAll('%20', ' ');
+  slug.trim().replaceAll(/-|\s/g, ' ');

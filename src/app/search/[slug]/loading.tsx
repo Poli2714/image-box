@@ -2,9 +2,9 @@ import { Skeleton } from '@/components/ui';
 
 import { createArray } from '@/lib/createArray/createArray';
 
-const arr = createArray(21);
-
 export default function SearchLoadingPage() {
+  const arr = createArray(21);
+
   return (
     <ul className='grid grid-cols-[repeat(auto-fit,minmax(clamp(20rem,50dvw,25rem),1fr))] gap-6'>
       {arr.map((_, i) => (
