@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './dropdown-menu';
-import PhotoCard from './PhotoCard/PhotoCard';
+import PhotoGrid from './PhotoGrid/PhotoGrid';
 
 export {
   Button,
@@ -13,5 +13,5 @@ export {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  PhotoCard,
+  PhotoGrid,
 };

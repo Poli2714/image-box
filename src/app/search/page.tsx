@@ -1,12 +1,19 @@
-import { SearchForm } from '@/components/forms';
+import { notFound } from 'next/navigation';
 
-export default function SearchPage() {
-  return (
-    <div className='flex flex-col items-center'>
-      <div className='h-20 w-full bg-[url("/gradiend-bg.svg")] bg-cover bg-no-repeat'></div>
-      <div className='relative top-[-1.75rem] min-w-[40rem]'>
-        <SearchForm />
-      </div>
-    </div>
-  );
+import { PhotoGrid } from '@/components/ui';
+
+import { getAllBase64 } from '@/lib/getBase84';
+import { getPhotos } from '@/lib/getPhotos';
+
+const query = 'Baku';
+
+export default async function SearchPage() {
+  const photos = await getPhotos(query);
+  if (!photos) {
+    notFound();
+  }
+  const allPhotoUrls = photos.map((photo) => photo.urls.thumb);
+  const base84results = await getAllBase64(allPhotoUrls);
+
+  return <PhotoGrid photos={photos} base84results={base84results} />;
 }

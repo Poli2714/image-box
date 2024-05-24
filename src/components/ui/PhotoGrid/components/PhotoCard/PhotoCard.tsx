@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { Photo } from '@/types/Images';
-import { Button } from '../button';
+import { Button } from '../../../button';
 
 type PhotoCardProps = {
   photo: Photo;
