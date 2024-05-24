@@ -13,6 +13,8 @@ import {
   FormMessage,
   Input,
 } from '@/components/forms';
+
+import { searchAction } from '@/actions/searchAction';
 import {
   searchFormSchema,
   SearchFormSchemaProps,
@@ -30,8 +32,13 @@ function SearchForm({ size = 'lg' }: SearchFormProps) {
     },
   });
 
-  const onSubmit = (data: SearchFormSchemaProps) => {
-    console.log(data);
+  const onSubmit = async (data: SearchFormSchemaProps) => {
+    const response = await searchAction(data);
+    if (response?.error) {
+      throw new Error('Something went wrong. Please try again.');
+    }
+
+    form.reset();
   };
 
   return (
