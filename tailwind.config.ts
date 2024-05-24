@@ -78,6 +78,8 @@ const config = {
       },
       screens: {
         xs: '450px',
+        skeletonMd: '915px',
+        skeletonLg: '1360px',
       },
     },
   },

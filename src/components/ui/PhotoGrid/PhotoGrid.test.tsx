@@ -51,10 +51,10 @@ const photos = [
     },
   },
 ];
-const base84results = ['bdsjkfdskjf', 'hjsdhfjksdhfkjs'];
+const base64results = ['bdsjkfdskjf', 'hjsdhfjksdhfkjs'];
 
 test('renders PhotoGrid', () => {
-  render(<PhotoGrid photos={photos} base84results={base84results} />);
+  render(<PhotoGrid photos={photos} base64results={base64results} />);
 
   expect(screen.getByRole('list')).toBeInTheDocument();
   expect(screen.getAllByRole('listitem')).toHaveLength(2);

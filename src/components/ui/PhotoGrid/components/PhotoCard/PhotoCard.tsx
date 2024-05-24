@@ -9,10 +9,10 @@ import { Button } from '../../../button';
 
 type PhotoCardProps = {
   photo: Photo;
-  base84: string;
+  base64: string;
 };
 
-function PhotoCard({ photo, base84 }: PhotoCardProps) {
+function PhotoCard({ photo, base64 }: PhotoCardProps) {
   const [isHoveredOn, setIsHoveredOn] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ function PhotoCard({ photo, base84 }: PhotoCardProps) {
         width={400}
         height={300}
         placeholder='blur'
-        blurDataURL={base84}
+        blurDataURL={base64}
       />
       {!!isHoveredOn ? (
         <>

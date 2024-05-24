@@ -15,7 +15,7 @@ function PhotoGrid({ photos, base64results }: PhotoGridProps) {
           className={`${photo.width < photo.height ? 'row-span-2' : null}`}
           key={photo.id}
         >
-          <PhotoCard photo={photo} base84={base64results[i]} />
+          <PhotoCard photo={photo} base64={base64results[i]} />
         </li>
       ))}
     </ul>
