@@ -1,10 +1,11 @@
 'use server';
 
+import { redirect } from 'next/navigation';
+
 import {
   SearchFormSchemaProps,
   searchFormSchema,
 } from '@/validations/SearchFormValidation';
-import { redirect } from 'next/navigation';
 
 export const searchAction = async (formData: SearchFormSchemaProps) => {
   const result = searchFormSchema.safeParse(formData);
@@ -15,5 +16,7 @@ export const searchAction = async (formData: SearchFormSchemaProps) => {
     };
   }
 
-  redirect(`/search/${result.data.query}`);
+  const keyword = result.data.query.toLowerCase().replaceAll(' ', '-');
+
+  redirect(`/search/${keyword}`);
 };
