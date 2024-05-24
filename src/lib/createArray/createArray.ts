@@ -1,6 +1,4 @@
-import { cache } from 'react';
-
-export const createArray = cache((number: number) => {
+export const createArray = (number: number) => {
   let arr = [];
 
   for (let i = 0; i < number; i++) {
@@ -8,4 +6,4 @@ export const createArray = cache((number: number) => {
   }
 
   return arr;
-});
+};
