@@ -1,3 +1,4 @@
+import AuthorImageAndName from './AuthorImageAndName/AuthorImageAndName';
 import { Button } from './button';
 import {
   DropdownMenu,
@@ -10,6 +11,7 @@ import ReturnHome from './ReturnHome/ReturnHome';
 import { Skeleton } from './skeleton';
 
 export {
+  AuthorImageAndName,
   Button,
   DropdownMenu,
   DropdownMenuContent,

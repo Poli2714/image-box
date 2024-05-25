@@ -4,8 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { AuthorImageAndName, Button } from '@/components/ui';
+
 import { Photo } from '@/types/Images';
-import { Button } from '@/components/ui';
 
 type PhotoCardProps = {
   photo: Photo;
@@ -37,23 +38,13 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
             className='absolute bottom-0 top-0 h-full w-full bg-foreground opacity-40'
             href={`/photo/${photo.id}`}
           ></Link>
-          <div className='absolute bottom-4 left-4 flex items-center space-x-2'>
-            <Link href={photo.user.portfolio_url ?? photo.user.links.html}>
-              <Image
-                // Look at it later! Show alt when image is present maybe?
-                alt={`${photo.user.name}'s picture`}
-                className='rounded-full'
-                src={photo.user.profile_image.small}
-                width={40}
-                height={40}
-              />
-            </Link>
-            <Link
-              href={photo.user.portfolio_url ?? photo.user.links.html}
-              className='self-center text-sm font-light text-secondary/90 hover:text-background'
-            >
-              {photo.user.name}
-            </Link>
+          <div className='absolute bottom-4 left-4 flex items-center space-x-2 hover:text-background [&>a:last-child]:text-secondary/90 hover:[&>a:last-child]:text-background'>
+            <AuthorImageAndName
+              portfolioUrl={photo.user.portfolio_url}
+              socialUrl={photo.user.links.html}
+              name={photo.user.name}
+              imageUrl={photo.user.profile_image.small}
+            />
           </div>
           <Button
             asChild

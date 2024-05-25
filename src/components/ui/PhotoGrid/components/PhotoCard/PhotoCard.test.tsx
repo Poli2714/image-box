@@ -29,7 +29,7 @@ const photo = {
 };
 
 test('renders PhotoCard', () => {
-  render(<PhotoCard photo={photo} base84='hjdskhjsdhlfjs' />);
+  render(<PhotoCard photo={photo} base64='hjdskhjsdhlfjs' />);
 
   expect(screen.getByTestId('photo-card')).toBeInTheDocument();
   expect(screen.getByRole('img')).toBeInTheDocument();
@@ -39,7 +39,7 @@ test('renders PhotoCard', () => {
 test('renders extra information about photo author and download button when user hovers on photo', async () => {
   const user = userEvent.setup();
 
-  render(<PhotoCard photo={photo} base84='sdhjfshjfdkj' />);
+  render(<PhotoCard photo={photo} base64='sdhjfshjfdkj' />);
   const photoCard = screen.getByTestId('photo-card');
 
   await user.hover(photoCard);
