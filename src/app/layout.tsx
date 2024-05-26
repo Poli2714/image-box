@@ -3,6 +3,8 @@ import { Be_Vietnam_Pro } from 'next/font/google';
 import '@/styles/globals.css';
 import { PageHeader } from './components';
 
+// import('../mocks').then(({ setupMocks }) => setupMocks());
+
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ['300', '500', '600'],
   subsets: ['latin'],
