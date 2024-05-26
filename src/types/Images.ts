@@ -21,3 +21,32 @@ export type Photo = {
     };
   };
 };
+
+export type ImageForPhotoPage = {
+  id: string;
+  created_at: string;
+  height: number;
+  width: number;
+  description: string;
+  alt_description: string;
+  urls: {
+    regular: string;
+    thumb: string;
+  };
+  links: {
+    download: string;
+  };
+  user: {
+    name: string;
+    portfolio_url: string;
+    links: {
+      html: string;
+    };
+    profile_image: {
+      small: string;
+    };
+  };
+  tags: Array<{
+    title: string;
+  }>;
+};
