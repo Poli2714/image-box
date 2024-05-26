@@ -12,7 +12,6 @@ type PhotoAndTagsProps = {
 async function PhotoAndTags({ keyword }: PhotoAndTagsProps) {
   const photo = await getAPhoto(keyword);
   const base64Result = await getBase64(photo.urls.thumb);
-  console.log(photo.urls.thumb);
   const formattedtags = photo.tags.map((tag) => tag.title.replaceAll(' ', '-'));
   const isLandscape =
     photo.width > photo.height || photo.width === photo.height;

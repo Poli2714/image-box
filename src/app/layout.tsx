@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import '@/styles/globals.css';
 import { PageHeader } from './components';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // import('../mocks').then(({ setupMocks }) => setupMocks());
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={`${beVietnamPro.className} flex min-h-dvh flex-col`}>
         <PageHeader />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
