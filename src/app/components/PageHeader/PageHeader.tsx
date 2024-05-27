@@ -1,11 +1,29 @@
 import Link from 'next/link';
+import { LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
 import { MenuIcon, Search, SunIcon } from 'lucide-react';
 
-import { BrandLogo, Menu, NavItems } from './components';
-import { Button } from '@/components/ui';
-import { SearchForm } from '@/components/forms';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
-function PageHeader() {
+import { BrandLogo, Menu, NavItems } from './components';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui';
+import { SearchForm } from '@/components/forms';
+import { getUserInitials } from '@/lib/getUserInitials/getUserInitials';
+
+async function PageHeader() {
+  const { isAuthenticated, getUser } = getKindeServerSession();
+
+  const user = await getUser();
+  const userInitials = getUserInitials(user?.given_name, user?.family_name);
+
   return (
     <header className='flex items-center gap-x-2 border-b px-[clamp(1rem,4dvw,2.5rem)] py-4'>
       <Menu>
@@ -26,7 +44,29 @@ function PageHeader() {
           </Link>
         </Button>
         <SearchForm size='sm' />
-        <Button>Sign in</Button>
+        {(await isAuthenticated()) ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src={user?.picture as string} />
+                <AvatarFallback className='font-light'>
+                  {userInitials}
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Button className='h-auto p-0' variant={null}>
+                  <LogoutLink>Sign out</LogoutLink>
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Button asChild>
+            <LoginLink>Sign in</LoginLink>
+          </Button>
+        )}
         <Button size='icon' variant='ghost'>
           <SunIcon data-testid='sun-icon' strokeWidth={1.25} />
         </Button>

@@ -1,4 +1,5 @@
 import AuthorImageAndName from './AuthorImageAndName/AuthorImageAndName';
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import { Button } from './button';
 import {
   DropdownMenu,
@@ -12,6 +13,9 @@ import { Skeleton } from './skeleton';
 
 export {
   AuthorImageAndName,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   Button,
   DropdownMenu,
   DropdownMenuContent,

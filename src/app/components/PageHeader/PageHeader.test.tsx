@@ -9,6 +9,6 @@ test('renders PageHeader', () => {
   expect(screen.getByRole('banner')).toBeInTheDocument();
   expect(screen.getByTestId('menu-icon')).toBeInTheDocument();
   expect(screen.getAllByTestId('search-icon')).toHaveLength(2);
-  expect(screen.getByRole('button', { name: 'Sign in' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Sign in' })).toBeInTheDocument();
   expect(screen.getByTestId('sun-icon')).toBeInTheDocument();
 });
