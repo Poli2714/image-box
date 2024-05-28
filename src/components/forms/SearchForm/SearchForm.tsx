@@ -34,21 +34,21 @@ function SearchForm({ size = 'lg' }: SearchFormProps) {
     },
   });
 
-  // const router = useRouter();
+  const router = useRouter();
 
-  const onSubmit = async (data: SearchFormSchemaProps) => {
-    const response = await searchAction(data);
-    if (response?.error) {
-      throw new Error('Something went wrong. Please try again.');
-    }
+  // const onSubmit = async (data: SearchFormSchemaProps) => {
+  //   const response = await searchAction(data);
+  //   if (response?.error) {
+  //     throw new Error('Something went wrong. Please try again.');
+  //   }
 
-    form.reset();
-  };
-  // const onSubmit = (data: SearchFormSchemaProps) => {
   //   form.reset();
-  //   const keyword = data.query.toLowerCase().replaceAll(' ', '-');
-  //   router.push(`/search/${keyword}`);
   // };
+  const onSubmit = (data: SearchFormSchemaProps) => {
+    form.reset();
+    const keyword = data.query.toLowerCase().replaceAll(' ', '-');
+    router.push(`/search/${keyword}`);
+  };
 
   return (
     <Form {...form}>
