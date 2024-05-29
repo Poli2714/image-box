@@ -8,6 +8,20 @@
       "when": 1716905215203,
       "tag": "0000_steady_excalibur",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1716941683567,
+      "tag": "0001_pink_maestro",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1716942304213,
+      "tag": "0002_illegal_lethal_legion",
+      "breakpoints": true
     }
   ]
 }

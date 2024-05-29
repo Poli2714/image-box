@@ -10,10 +10,11 @@ import { relations } from 'drizzle-orm';
 export const photos = pgTable('photo', {
   id: uuid('id').primaryKey().defaultRandom(),
   slug: text('slug').notNull(),
+  thumb: text('thumb').notNull(),
 });
 
 export const photosRelations = relations(photos, ({ many }) => ({
-  photosToCollections: many(photosToCollections),
+  collectionsToPhotos: many(collectionsToPhotos),
 }));
 
 export const collections = pgTable('collection', {
@@ -27,11 +28,11 @@ export const collections = pgTable('collection', {
 });
 
 export const collectionsRelations = relations(collections, ({ many }) => ({
-  photosToCollections: many(photosToCollections),
+  collectionsToPhotos: many(collectionsToPhotos),
 }));
 
-export const photosToCollections = pgTable(
-  'photos_to_collections',
+export const collectionsToPhotos = pgTable(
+  'collections_to_photos',
   {
     photoId: uuid('photo_id')
       .notNull()
@@ -45,15 +46,15 @@ export const photosToCollections = pgTable(
   })
 );
 
-export const photosToCollectionsRelations = relations(
-  photosToCollections,
+export const collectionsToPhotosRelations = relations(
+  collectionsToPhotos,
   ({ one }) => ({
     photo: one(photos, {
-      fields: [photosToCollections.photoId],
+      fields: [collectionsToPhotos.photoId],
       references: [photos.id],
     }),
     collection: one(collections, {
-      fields: [photosToCollections.collectionId],
+      fields: [collectionsToPhotos.collectionId],
       references: [collections.id],
     }),
   })
