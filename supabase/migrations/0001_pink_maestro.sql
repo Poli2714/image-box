@@ -1,1 +1,0 @@
-ALTER TABLE "photo" ADD COLUMN "thumb" text NOT NULL;

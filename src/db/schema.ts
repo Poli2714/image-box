@@ -8,7 +8,8 @@ import {
 import { relations } from 'drizzle-orm';
 
 export const photos = pgTable('photo', {
-  id: uuid('id').primaryKey().defaultRandom(),
+  id: text('id').primaryKey().notNull(),
+  altDescription: text('alt_description').notNull(),
   slug: text('slug').notNull(),
   thumb: text('thumb').notNull(),
 });
@@ -34,7 +35,7 @@ export const collectionsRelations = relations(collections, ({ many }) => ({
 export const collectionsToPhotos = pgTable(
   'collections_to_photos',
   {
-    photoId: uuid('photo_id')
+    photoId: text('photo_id')
       .notNull()
       .references(() => photos.id),
     collectionId: uuid('collection_id')

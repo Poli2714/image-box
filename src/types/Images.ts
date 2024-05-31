@@ -1,4 +1,5 @@
 export type Photo = {
+  slug: string;
   id: string;
   width: number;
   height: number;
@@ -23,11 +24,11 @@ export type Photo = {
 };
 
 export type ImageForPhotoPage = {
+  slug: string;
   id: string;
   created_at: string;
   height: number;
   width: number;
-  description: string;
   alt_description: string;
   urls: {
     regular: string;

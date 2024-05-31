@@ -1,5 +1,5 @@
 {
-  "id": "a9dc3dfe-0abc-4468-9809-c5141a28dbc2",
+  "id": "8659c9da-3951-4d49-a1fd-c1f3b1178674",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -46,36 +46,13 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.photo": {
-      "name": "photo",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "slug": {
-          "name": "slug",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "public.photos_to_collections": {
-      "name": "photos_to_collections",
+    "public.collections_to_photos": {
+      "name": "collections_to_photos",
       "schema": "",
       "columns": {
         "photo_id": {
           "name": "photo_id",
-          "type": "uuid",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
@@ -88,9 +65,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "photos_to_collections_photo_id_photo_id_fk": {
-          "name": "photos_to_collections_photo_id_photo_id_fk",
-          "tableFrom": "photos_to_collections",
+        "collections_to_photos_photo_id_photo_id_fk": {
+          "name": "collections_to_photos_photo_id_photo_id_fk",
+          "tableFrom": "collections_to_photos",
           "tableTo": "photo",
           "columnsFrom": [
             "photo_id"
@@ -101,9 +78,9 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "photos_to_collections_collection_id_collection_id_fk": {
-          "name": "photos_to_collections_collection_id_collection_id_fk",
-          "tableFrom": "photos_to_collections",
+        "collections_to_photos_collection_id_collection_id_fk": {
+          "name": "collections_to_photos_collection_id_collection_id_fk",
+          "tableFrom": "collections_to_photos",
           "tableTo": "collection",
           "columnsFrom": [
             "collection_id"
@@ -116,14 +93,48 @@
         }
       },
       "compositePrimaryKeys": {
-        "photos_to_collections_photo_id_collection_id_pk": {
-          "name": "photos_to_collections_photo_id_collection_id_pk",
+        "collections_to_photos_photo_id_collection_id_pk": {
+          "name": "collections_to_photos_photo_id_collection_id_pk",
           "columns": [
             "photo_id",
             "collection_id"
           ]
         }
       },
+      "uniqueConstraints": {}
+    },
+    "public.photo": {
+      "name": "photo",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "alt_description": {
+          "name": "alt_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "thumb": {
+          "name": "thumb",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     }
   },
