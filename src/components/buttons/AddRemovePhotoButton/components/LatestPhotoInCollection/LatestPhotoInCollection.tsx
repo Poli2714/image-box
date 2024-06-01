@@ -19,9 +19,10 @@ function LatestPhotoInCollection({
       {numberOfPhotosInCollection > 0 ? (
         <Image
           alt={altDescription as string}
-          className='rounded-md object-cover object-center'
-          fill
+          className='h-16 w-16 rounded-md object-cover object-center'
+          height={64}
           src={photoSrc as string}
+          width={64}
         />
       ) : (
         <ImageIcon

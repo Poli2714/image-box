@@ -37,11 +37,11 @@ function AddRemovePhotoButton({ userCollection }: AddRemovePhotoButtonProps) {
       : startTransition(
           async () =>
             await addPhotoToCollection({
-              altDescription: photo.altDescription,
+              altDescription: photo?.altDescription,
               collectionId: userCollection.id,
-              photoId: photo.id,
-              slug: photo.slug,
-              thumb: photo.thumb,
+              photoId: photo?.id,
+              slug: photo?.slug,
+              thumb: photo?.thumb,
             })
         );
 
@@ -58,11 +58,11 @@ function AddRemovePhotoButton({ userCollection }: AddRemovePhotoButtonProps) {
         <LatestPhotoInCollection
           numberOfPhotosInCollection={numberOfPhotos}
           altDescription={
-            userCollection.collectionsToPhotos[numberOfPhotos - 1].photo
+            userCollection.collectionsToPhotos[numberOfPhotos - 1]?.photo
               ?.altDescription
           }
           photoSrc={
-            userCollection.collectionsToPhotos[numberOfPhotos - 1].photo?.thumb
+            userCollection.collectionsToPhotos[numberOfPhotos - 1]?.photo?.thumb
           }
         />
         <CollectionInfo
