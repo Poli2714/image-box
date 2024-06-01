@@ -1,9 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { Search } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui';
@@ -16,7 +15,6 @@ import {
   Input,
 } from '@/components/forms';
 
-import { searchAction } from '@/actions/searchAction';
 import {
   searchFormSchema,
   SearchFormSchemaProps,
@@ -36,14 +34,6 @@ function SearchForm({ size = 'lg' }: SearchFormProps) {
 
   const router = useRouter();
 
-  // const onSubmit = async (data: SearchFormSchemaProps) => {
-  //   const response = await searchAction(data);
-  //   if (response?.error) {
-  //     throw new Error('Something went wrong. Please try again.');
-  //   }
-
-  //   form.reset();
-  // };
   const onSubmit = (data: SearchFormSchemaProps) => {
     form.reset();
     const keyword = data.query.toLowerCase().replaceAll(' ', '-');
