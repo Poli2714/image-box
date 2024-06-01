@@ -34,7 +34,7 @@ async function PhotoAndTags({ keyword }: PhotoAndTagsProps) {
           <li key={i}>
             <Link
               href={`/search/${formattedtags[i]}`}
-              className={badgeVariants({ variant: 'secondary' })}
+              className={`${badgeVariants({ variant: 'secondary' })} rounded-md`}
             >
               {tag.title}
             </Link>
