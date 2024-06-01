@@ -10,7 +10,7 @@ function LatestCollections({ latestCollections }: LatestCollectionsProps) {
   return (
     <div className='space-y-3'>
       <h2 className='pl-2'>Latest Collections</h2>
-      <ul>
+      <ul className='space-y-1'>
         {latestCollections.map((latestCollection) => (
           <li key={latestCollection.id}>
             <AddRemovePhotoButton userCollection={latestCollection} />
