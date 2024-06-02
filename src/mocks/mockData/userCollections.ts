@@ -172,3 +172,51 @@ export const mockUserCollections2 = [
     ],
   },
 ];
+
+export const mockUserCollections3 = [
+  {
+    id: 'testId1',
+    name: 'Los Angeles',
+    updatedAt: new Date(),
+    collectionsToPhotos: [
+      {
+        photo: {
+          id: 'test-photo-id1',
+          altDescription: 'test-description1',
+          slug: 'test-slug1',
+          thumb: 'https://test1.com',
+        },
+      },
+    ],
+  },
+  {
+    id: 'testId2',
+    name: 'Nature',
+    updatedAt: new Date(),
+    collectionsToPhotos: [
+      {
+        photo: {
+          id: 'test-photo-id2',
+          altDescription: 'test-description2',
+          slug: 'test-slug2',
+          thumb: 'https://test2.com',
+        },
+      },
+    ],
+  },
+  {
+    id: 'testId3',
+    name: 'Computers',
+    updatedAt: new Date(),
+    collectionsToPhotos: [
+      {
+        photo: {
+          id: 'test-photo-id3',
+          altDescription: 'test-description3',
+          slug: 'test-slug3',
+          thumb: 'https://test3.com',
+        },
+      },
+    ],
+  },
+];
