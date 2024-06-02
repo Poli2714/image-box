@@ -1,3 +1,4 @@
+import NoCollectionMessage from './NoCollectionMessage/NoCollectionMessage';
 import SignInAlert from './SignInAlert/SignInAlert';
 
-export { SignInAlert };
+export { NoCollectionMessage, SignInAlert };
