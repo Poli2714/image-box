@@ -19,6 +19,7 @@ export const getUserCollections = async (userId: string) => {
         },
       },
       where: (collections, { eq }) => eq(collections.userId, userId),
+      orderBy: (collections, { desc }) => desc(collections.createdAt),
     });
     return userCollections;
   } catch (error) {
