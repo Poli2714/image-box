@@ -34,36 +34,51 @@ function CollectionCard({ collection }: CollectionCardProps) {
           <div
             className={`grid h-60 w-full ${numberOfPhotos === 2 ? 'grid-cols-2' : numberOfPhotos > 2 ? 'grid-cols-[3fr_1fr]' : null} ${numberOfPhotos > 1 ? 'gap-0.5' : null}`}
           >
-            <Image
-              alt={collection.collectionsToPhotos[0]?.photo?.altDescription}
-              className={`h-60 w-full ${numberOfPhotos === 1 ? 'rounded-md' : 'rounded-s-md'} object-cover`}
-              src={collection.collectionsToPhotos[0]?.photo.regular}
-              height={240}
-              width={
-                numberOfPhotos === 2 ? 200 : numberOfPhotos > 2 ? 300 : 400
-              }
-            />
+            <div className='relative'>
+              <Image
+                alt={collection.collectionsToPhotos[0]?.photo?.altDescription}
+                className={`h-auto w-auto ${numberOfPhotos === 1 ? 'rounded-md' : 'rounded-s-md'} object-cover`}
+                src={collection.collectionsToPhotos[0]?.photo.regular}
+                fill
+                sizes={
+                  numberOfPhotos === 2
+                    ? '200px'
+                    : numberOfPhotos > 2
+                      ? '300px'
+                      : '400px'
+                }
+                priority={true}
+              />
+            </div>
             {numberOfPhotos > 1 ? (
               <div
                 className={`grid max-h-60 ${numberOfPhotos > 2 ? 'grid-rows-2' : null} gap-0.5`}
               >
-                <Image
-                  alt={collection.collectionsToPhotos[1]?.photo?.altDescription}
-                  className={`h-full ${numberOfPhotos > 2 ? 'rounded-tr-md' : 'rounded-e-md'} object-cover`}
-                  src={collection.collectionsToPhotos[1]?.photo.regular}
-                  height={numberOfPhotos > 2 ? 120 : 240}
-                  width={numberOfPhotos > 2 ? 100 : 200}
-                />
-                {numberOfPhotos > 2 ? (
+                <div className='relative'>
                   <Image
                     alt={
-                      collection.collectionsToPhotos[2]?.photo?.altDescription
+                      collection.collectionsToPhotos[1]?.photo?.altDescription
                     }
-                    className='h-full rounded-br-md object-cover'
-                    src={collection.collectionsToPhotos[2]?.photo.regular}
-                    height={120}
-                    width={100}
+                    className={`h-auto w-auto ${numberOfPhotos > 2 ? 'rounded-tr-md' : 'rounded-e-md'} object-cover`}
+                    src={collection.collectionsToPhotos[1]?.photo.regular}
+                    fill
+                    sizes={numberOfPhotos > 2 ? '100px' : '200px'}
+                    priority={true}
                   />
+                </div>
+                {numberOfPhotos > 2 ? (
+                  <div className='relative'>
+                    <Image
+                      alt={
+                        collection.collectionsToPhotos[2]?.photo?.altDescription
+                      }
+                      className='h-auto w-auto rounded-br-md object-cover'
+                      src={collection.collectionsToPhotos[2]?.photo.regular}
+                      fill
+                      sizes='100px'
+                      priority={true}
+                    />
+                  </div>
                 ) : null}
               </div>
             ) : null}
