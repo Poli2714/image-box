@@ -7,6 +7,7 @@ export type UserCollection = {
       id: string;
       altDescription: string;
       slug: string;
+      regular: string;
       thumb: string;
     };
   }>;

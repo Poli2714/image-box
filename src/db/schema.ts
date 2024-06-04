@@ -11,6 +11,7 @@ export const photos = pgTable('photo', {
   id: text('id').primaryKey().notNull(),
   altDescription: text('alt_description').notNull(),
   slug: text('slug').notNull(),
+  regular: text('regular').notNull(),
   thumb: text('thumb').notNull(),
 });
 

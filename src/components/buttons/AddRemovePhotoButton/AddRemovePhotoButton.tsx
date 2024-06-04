@@ -41,6 +41,7 @@ function AddRemovePhotoButton({ userCollection }: AddRemovePhotoButtonProps) {
               collectionId: userCollection.id,
               photoId: photo?.id,
               slug: photo?.slug,
+              regular: photo?.regular,
               thumb: photo?.thumb,
             })
         );

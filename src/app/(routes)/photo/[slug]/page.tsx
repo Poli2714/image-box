@@ -34,6 +34,7 @@ export default async function PhotoSlugPage({ params }: PhotoSlugPageProps) {
           altDescription: photo.alt_description,
           id: photo.id,
           slug: photo.slug,
+          regular: photo.urls.regular,
           thumb: photo.urls.thumb,
         }}
       >

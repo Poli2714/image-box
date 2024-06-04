@@ -11,6 +11,7 @@ type AddPhotoToCollectionProps = {
   collectionId: string;
   photoId: string;
   slug: string;
+  regular: string;
   thumb: string;
 };
 
@@ -19,6 +20,7 @@ export const addPhotoToCollection = async ({
   collectionId,
   photoId,
   slug,
+  regular,
   thumb,
 }: AddPhotoToCollectionProps) => {
   try {
@@ -28,6 +30,7 @@ export const addPhotoToCollection = async ({
         altDescription,
         id: photoId,
         slug,
+        regular,
         thumb,
       });
     }

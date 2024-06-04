@@ -6,6 +6,7 @@ type Photo = {
   altDescription: string;
   id: string;
   slug: string;
+  regular: string;
   thumb: string;
 };
 
@@ -19,6 +20,7 @@ export const PhotoContext = createContext({
     altDescription: '',
     id: '',
     slug: '',
+    regular: '',
     thumb: '',
   },
   setPhoto: (photo: Photo) => {},
