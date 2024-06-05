@@ -31,7 +31,7 @@ export default async function CollectionsPage() {
   }
 
   return (
-    <main className='space-y-12 px-[clamp(1rem,4dvw,3rem)] py-10 2xl:container'>
+    <>
       <CollectionsHeader />
       <div>
         <ul className='grid grid-cols-[repeat(auto-fit,minmax(clamp(15rem,70dvw,25rem),1fr))] gap-4'>
@@ -42,6 +42,6 @@ export default async function CollectionsPage() {
           ))}
         </ul>
       </div>
-    </main>
+    </>
   );
 }
