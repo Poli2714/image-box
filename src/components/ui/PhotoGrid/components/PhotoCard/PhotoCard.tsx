@@ -27,8 +27,8 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
         className='h-full w-full rounded-md object-cover'
         alt={photo.alt_description}
         src={photo.urls.regular}
-        width={400}
-        height={300}
+        width={450}
+        height={photo.height > photo.width ? 600 : 300}
         placeholder='blur'
         blurDataURL={base64}
       />

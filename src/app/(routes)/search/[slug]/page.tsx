@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 
-import { PhotoGrid } from '@/components/ui';
+import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
 
 import { formatSlug } from '@/lib/formatSlug';
 import { getAllBase64 } from '@/lib/getBase64';
