@@ -1,14 +1,14 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
-import { getUserCollections } from '@/db/handlers';
-import { UserCollection } from '@/types/collections';
 import {
   CollectionCard,
   CollectionsHeader,
   NoCollectionMessage,
-  SignInAlert,
 } from './components';
-import Link from 'next/link';
+import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
+
+import { getUserCollections } from '@/db/handlers';
+import { UserCollection } from '@/types/collections';
 
 export default async function CollectionsPage() {
   let userCollections: Array<UserCollection> = [];

@@ -14,6 +14,7 @@ function SignInAlert() {
       </p>
       <Button asChild className='mt-4'>
         <LoginLink>Sign In</LoginLink>
+        Test
       </Button>
     </div>
   );
