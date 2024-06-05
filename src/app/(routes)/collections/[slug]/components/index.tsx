@@ -1,3 +1,4 @@
+import CollectionSlugHeader from './CollectionSlugHeader/CollectionSlugHeader';
 import NoPhotosMessage from './NoPhotosMessage/NoPhotosMessage';
 
-export { NoPhotosMessage };
+export { CollectionSlugHeader, NoPhotosMessage };
