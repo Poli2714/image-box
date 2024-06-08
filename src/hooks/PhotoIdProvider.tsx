@@ -15,7 +15,7 @@ type PhotoProviderProps = {
   photoForCollection: Photo;
 };
 
-export const PhotoContext = createContext({
+const PhotoContext = createContext({
   photo: {
     altDescription: '',
     id: '',
@@ -42,4 +42,4 @@ function usePhotoContext() {
   return context;
 }
 
-export { PhotoProvider, usePhotoContext };
+export { PhotoContext, PhotoProvider, usePhotoContext };
