@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Button } from '@/components/ui/button';
+import { Button, DialogClose, DialogFooter } from '@/components/ui';
 import { DeleteCollectionAlert } from './components';
-import { DialogClose, DialogFooter } from '@/components/ui/dialog';
+import { DrawerClose, DrawerFooter } from '@/components/ui/shadcn';
 import {
   Form,
   FormControl,
@@ -22,6 +22,7 @@ import {
   editCollectionNameFormSchema,
   EditCollectionNameFormSchemaProps,
 } from '@/validations/EditCollectionNameFormValidation';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useOptimisticCollectionNameContext } from '@/hooks/OptimisticCollectionNameProvider';
 
 type EditCollectionNameFormProps = {
@@ -42,6 +43,7 @@ function EditCollectionNameForm({ collectionId }: EditCollectionNameFormProps) {
   const { optimisticCollectionName, setOptimisticCollectionName } =
     useOptimisticCollectionNameContext();
   const [response, setResponse] = useState<ErrorProps>(initialResponse);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const form = useForm<EditCollectionNameFormSchemaProps>({
     resolver: zodResolver(editCollectionNameFormSchema),
@@ -99,11 +101,21 @@ function EditCollectionNameForm({ collectionId }: EditCollectionNameFormProps) {
           />
           {!response.success ||
           (formValue.length > 0 && formValue.length < 51) ? (
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button type='submit'>Save</Button>
-              </DialogClose>
-            </DialogFooter>
+            isDesktop ? (
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button type='submit'>Save</Button>
+                </DialogClose>
+              </DialogFooter>
+            ) : (
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button className='self-end' type='submit'>
+                    Save
+                  </Button>
+                </DrawerClose>
+              </DrawerFooter>
+            )
           ) : (
             <Button className='self-end' type='submit'>
               Save

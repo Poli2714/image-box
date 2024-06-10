@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { db } from './db';
 
 export const getUserCollections = async (userId: string) => {
@@ -23,7 +25,51 @@ export const getUserCollections = async (userId: string) => {
     });
     return userCollections;
   } catch (error) {
-    throw new Error('Something went wrong. Please try again');
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error(String(error));
+    }
+  }
+};
+
+export const getCollectionInfo = async (collectionId: string) => {
+  try {
+    const userCollection = await db.query.collections.findFirst({
+      columns: {
+        name: true,
+        createdAt: true,
+      },
+      with: {
+        collectionsToPhotos: {
+          columns: {
+            photoId: false,
+            collectionId: false,
+          },
+          with: {
+            photo: {
+              columns: {
+                id: true,
+                thumb: true,
+              },
+            },
+          },
+        },
+      },
+      where: (collections, { eq }) => eq(collections.id, collectionId),
+    });
+
+    return userCollection;
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message.startsWith('invalid input syntax for type uuid')) {
+        return notFound();
+      } else {
+        throw new Error(error.message);
+      }
+    } else {
+      throw new Error(String(error));
+    }
   }
 };
 

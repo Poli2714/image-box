@@ -4,6 +4,10 @@ import userEvent from '@testing-library/user-event';
 
 import EditCollectionBtn from './EditCollectionBtn';
 
+vi.mock('@/hooks/useMediaQuery', () => ({
+  useMediaQuery: () => true,
+}));
+
 vi.mock('./components', () => ({
   EditCollectionNameForm: vi.fn(() => <div>Mock form div</div>),
 }));
