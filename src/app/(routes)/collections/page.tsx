@@ -8,24 +8,19 @@ import {
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
 
 import { getUserCollections } from '@/db/handlers';
-import { UserCollection } from '@/types/collections';
 
 export default async function CollectionsPage() {
-  let userCollections: Array<UserCollection> = [];
   const { isAuthenticated, getUser } = getKindeServerSession();
   const [isUserSignedIn, user] = await Promise.all([
     isAuthenticated(),
     getUser(),
   ]);
 
-  if (user) {
-    userCollections = await getUserCollections(user.id);
-  }
-
-  if (!isUserSignedIn) {
+  if (!isUserSignedIn || !user) {
     return <SignInAlert />;
   }
 
+  const userCollections = await getUserCollections(user.id);
   if (userCollections.length === 0) {
     return <NoCollectionMessage />;
   }

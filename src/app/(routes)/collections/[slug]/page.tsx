@@ -31,15 +31,16 @@ export default async function CollectionSlugPage({
   }
 
   const userCollection = await getCollectionInfo(params.slug);
-
-  if (!userCollection) throw new Error();
+  if (!userCollection) {
+    throw new Error('Something went wrong');
+  }
 
   let photoIds: Array<string> = [];
   let photoUrls: Array<string> = [];
 
-  userCollection.collectionsToPhotos.forEach((info) => {
-    photoIds.push(info.photo.id);
-    photoUrls.push(info.photo.thumb);
+  userCollection.collectionsToPhotos.forEach((photoInfo) => {
+    photoIds.push(photoInfo.photo.id);
+    photoUrls.push(photoInfo.photo.thumb);
   });
 
   const [photos, base64Results] = await Promise.all([
