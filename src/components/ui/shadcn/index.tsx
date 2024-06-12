@@ -18,6 +18,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from './drawer';
+import { Separator } from './separator';
 
 export {
   AlertDialog,
@@ -36,4 +37,5 @@ export {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
+  Separator,
 };

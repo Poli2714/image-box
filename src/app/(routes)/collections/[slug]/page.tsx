@@ -10,6 +10,8 @@ import { getAllBase64 } from '@/lib/getBase64';
 import { getAPhoto } from '@/lib/getAPhoto';
 import { getCollectionInfo } from '@/db/handlers';
 import { OptimisticCollectionNameContextProvider } from '@/hooks/OptimisticCollectionNameProvider';
+import { OtherCollections } from '../components';
+import { Separator } from '@/components/ui/shadcn';
 
 type CollectionPageProps = {
   params: {
@@ -61,19 +63,11 @@ export default async function CollectionSlugPage({
       {photoIds.length === 0 ? (
         <NoPhotosMessage />
       ) : (
-        <Suspense
-          fallback={
-            <div className='mt-20 flex items-center justify-center'>
-              <Loader2Icon
-                strokeWidth={1.5}
-                size={64}
-                className='animate-spin text-secondary'
-              />
-            </div>
-          }
-        >
+        <div className='space-y-10'>
           <PhotoGrid photos={photos} base64results={base64Results} />
-        </Suspense>
+          <Separator />
+          <OtherCollections collectionId={params.slug} userId={user.id} />
+        </div>
       )}
     </>
   );
