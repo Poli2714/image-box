@@ -8,12 +8,12 @@ import { getPhotos } from '@/lib/getPhotos';
 const query = 'los angeles';
 
 export default async function SearchPage() {
-  const photos = await getPhotos(query);
-  if (!photos) {
+  const result = await getPhotos(query);
+  if (result.photos.length === 0) {
     notFound();
   }
-  const allPhotoUrls = photos.map((photo) => photo.urls.thumb);
+  const allPhotoUrls = result.photos.map((photo) => photo.urls.thumb);
   const base64results = await getAllBase64(allPhotoUrls);
 
-  return <PhotoGrid photos={photos} base64results={base64results} />;
+  return <PhotoGrid photos={result.photos} base64results={base64results} />;
 }

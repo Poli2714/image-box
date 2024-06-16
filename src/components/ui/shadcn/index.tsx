@@ -18,6 +18,15 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from './drawer';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from './pagination';
 import { Separator } from './separator';
 
 export {
@@ -37,5 +46,12 @@ export {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
   Separator,
 };

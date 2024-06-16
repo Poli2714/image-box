@@ -1,3 +1,4 @@
+import NoPhotosFound from './NoPhotosFound/NoPhotosFound';
 import SearchPageHeading from './SearchPageHeading/SearchPageHeading';
 
-export { SearchPageHeading };
+export { NoPhotosFound, SearchPageHeading };

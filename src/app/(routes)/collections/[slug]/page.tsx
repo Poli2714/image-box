@@ -1,6 +1,4 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { Loader2Icon } from 'lucide-react';
-import { Suspense } from 'react';
 
 import { CollectionSlugHeader, NoPhotosMessage } from './components';
 import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';

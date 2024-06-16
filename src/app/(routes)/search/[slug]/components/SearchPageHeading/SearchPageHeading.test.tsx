@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import SearchPageHeading from './SearchPageHeading';
 
 test('renders SearchPageHeading', () => {
-  render(<SearchPageHeading slug='los-angeles' />);
+  render(<SearchPageHeading slug='los angeles' />);
 
   const heading = screen.getByRole('heading');
 
