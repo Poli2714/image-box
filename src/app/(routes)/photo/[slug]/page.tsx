@@ -54,7 +54,7 @@ export default async function PhotoSlugPage({ params }: PhotoSlugPageProps) {
             <AddToCollectionBtn />
             <DownloadLink link={photo.links.download} />
           </div>
-          {!!user ? (
+          {!!user && userCollections.length > 0 ? (
             <LatestCollections latestCollections={latestCollections} />
           ) : null}
         </div>
