@@ -31,7 +31,7 @@ function DeleteCollectionAlert({ collectionId }: DeleteCollectionAlertProps) {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className='absolute bottom-4 left-6'
+          className='absolute bottom-6 left-6'
           type='submit'
           variant='destructive'
         >

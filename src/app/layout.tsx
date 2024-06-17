@@ -1,8 +1,11 @@
-import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
-import '@/styles/globals.css';
-import { PageHeader } from './components';
+import type { Metadata } from 'next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
+import { PageHeader } from './components';
+import { ThemeProvider } from '@/components/ui/shadcn';
+
+import '@/styles/globals.css';
 
 // import('../mocks').then(({ setupMocks }) => setupMocks());
 
@@ -25,9 +28,16 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${beVietnamPro.className} flex min-h-dvh flex-col`}>
-        <PageHeader />
-        {children}
-        <SpeedInsights />
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <PageHeader />
+          {children}
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

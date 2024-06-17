@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { MenuIcon, Search, SunIcon } from 'lucide-react';
+import { MenuIcon, Search } from 'lucide-react';
 
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
-import { BrandLogo, Menu, NavItems } from './components';
+import { BrandLogo, Menu, NavItems, ThemeToggle } from './components';
 import {
   Avatar,
   AvatarFallback,
@@ -67,9 +67,7 @@ async function PageHeader() {
             <LoginLink>Sign in</LoginLink>
           </Button>
         )}
-        <Button size='icon' variant='ghost'>
-          <SunIcon data-testid='sun-icon' strokeWidth={1.25} />
-        </Button>
+        <ThemeToggle />
       </div>
     </header>
   );

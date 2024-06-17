@@ -28,6 +28,7 @@ import {
   PaginationPrevious,
 } from './pagination';
 import { Separator } from './separator';
+import { ThemeProvider } from './theme-provider';
 
 export {
   AlertDialog,
@@ -54,4 +55,5 @@ export {
   PaginationNext,
   PaginationPrevious,
   Separator,
+  ThemeProvider,
 };
