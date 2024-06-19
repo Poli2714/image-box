@@ -1,7 +1,7 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
 import {
-  CollectionCard,
+  CollectionGrid,
   CollectionsHeader,
   NoCollectionMessage,
 } from './components';
@@ -28,15 +28,7 @@ export default async function CollectionsPage() {
   return (
     <>
       <CollectionsHeader />
-      <div>
-        <ul className='grid grid-cols-[repeat(auto-fit,minmax(clamp(15rem,70dvw,25rem),1fr))] gap-4'>
-          {userCollections.map((userCollection) => (
-            <li className='flex justify-center' key={userCollection.id}>
-              <CollectionCard collection={userCollection} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CollectionGrid userCollections={userCollections} />
     </>
   );
 }

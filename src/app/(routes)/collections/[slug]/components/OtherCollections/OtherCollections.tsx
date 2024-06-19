@@ -1,4 +1,4 @@
-import { CollectionCard } from '..';
+import { CollectionGrid } from '../../../components';
 
 import { getUserCollections } from '@/db/handlers';
 
@@ -19,13 +19,7 @@ async function OtherCollections({
   return filteredCollections.length > 0 ? (
     <div className='space-y-8'>
       <h2 className='text-2xl'>Other Collections</h2>
-      <ul className='grid grid-cols-[repeat(auto-fit,minmax(clamp(15rem,70dvw,25rem),1fr))] gap-4'>
-        {filteredCollections.map((collection) => (
-          <li className='flex justify-center lg:block' key={collection.id}>
-            <CollectionCard collection={collection} />
-          </li>
-        ))}
-      </ul>
+      <CollectionGrid userCollections={filteredCollections} />
     </div>
   ) : null;
 }

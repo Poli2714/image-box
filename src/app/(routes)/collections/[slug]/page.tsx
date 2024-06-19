@@ -1,6 +1,10 @@
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
-import { CollectionSlugHeader, NoPhotosMessage } from './components';
+import {
+  CollectionSlugHeader,
+  NoPhotosMessage,
+  OtherCollections,
+} from './components';
 import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
 
@@ -8,7 +12,6 @@ import { getAllBase64 } from '@/lib/getBase64';
 import { getAPhoto } from '@/lib/getAPhoto';
 import { getCollectionInfo } from '@/db/handlers';
 import { OptimisticCollectionNameContextProvider } from '@/hooks/OptimisticCollectionNameProvider';
-import { OtherCollections } from '../components';
 import { Separator } from '@/components/ui/shadcn';
 
 type CollectionPageProps = {

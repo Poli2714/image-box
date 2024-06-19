@@ -12,17 +12,17 @@ function CollectionCard({ collection }: CollectionCardProps) {
   const numberOfPhotos = collection.collectionsToPhotos.length;
 
   return (
-    <div className='flex w-full max-w-[25rem] flex-col gap-y-2'>
+    <div className='flex w-full max-w-80 flex-col gap-y-2'>
       {numberOfPhotos === 0 ? (
         <Link
           className='hover:opacity-85'
           href={`/collections/${collection.id}`}
         >
-          <div className='flex h-60 w-full items-center justify-center rounded-md border border-foreground/20'>
+          <div className='flex h-48 w-full items-center justify-center rounded-md border border-foreground/20'>
             <ImageIcon
               className='text-foreground/20'
               strokeWidth={0.5}
-              size={120}
+              size={100}
             />
           </div>
         </Link>
@@ -32,7 +32,7 @@ function CollectionCard({ collection }: CollectionCardProps) {
           href={`/collections/${collection.id}`}
         >
           <div
-            className={`grid h-60 w-full ${numberOfPhotos === 2 ? 'grid-cols-2' : numberOfPhotos > 2 ? 'grid-cols-[3fr_1fr]' : null} ${numberOfPhotos > 1 ? 'gap-0.5' : null}`}
+            className={`grid h-48 w-full ${numberOfPhotos === 2 ? 'grid-cols-2' : numberOfPhotos > 2 ? 'grid-cols-[3fr_1fr]' : null} ${numberOfPhotos > 1 ? 'gap-0.5' : null}`}
           >
             <div className='relative'>
               <Image
@@ -42,17 +42,17 @@ function CollectionCard({ collection }: CollectionCardProps) {
                 fill
                 sizes={
                   numberOfPhotos === 2
-                    ? '200px'
+                    ? '160px'
                     : numberOfPhotos > 2
-                      ? '300px'
-                      : '400px'
+                      ? '240px'
+                      : '320px'
                 }
                 priority={true}
               />
             </div>
             {numberOfPhotos > 1 ? (
               <div
-                className={`grid max-h-60 ${numberOfPhotos > 2 ? 'grid-rows-2' : null} gap-0.5`}
+                className={`grid max-h-48 ${numberOfPhotos > 2 ? 'grid-rows-2' : null} gap-0.5`}
               >
                 <div className='relative'>
                   <Image
@@ -62,7 +62,7 @@ function CollectionCard({ collection }: CollectionCardProps) {
                     className={`h-auto w-auto ${numberOfPhotos > 2 ? 'rounded-tr-md' : 'rounded-e-md'} object-cover`}
                     src={collection.collectionsToPhotos[1]?.photo.regular}
                     fill
-                    sizes={numberOfPhotos > 2 ? '100px' : '200px'}
+                    sizes={numberOfPhotos > 2 ? '80px' : '160px'}
                     priority={true}
                   />
                 </div>
@@ -75,7 +75,7 @@ function CollectionCard({ collection }: CollectionCardProps) {
                       className='h-auto w-auto rounded-br-md object-cover'
                       src={collection.collectionsToPhotos[2]?.photo.regular}
                       fill
-                      sizes='100px'
+                      sizes='80px'
                       priority={true}
                     />
                   </div>

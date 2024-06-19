@@ -18,17 +18,17 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
 
   return (
     <div
-      className='relative h-full w-full'
+      className='relative h-auto w-full max-w-full'
       data-testid='photo-card'
       onMouseEnter={() => setIsHoveredOn(true)}
       onMouseLeave={() => setIsHoveredOn(false)}
     >
       <Image
-        className='h-full w-full rounded-md object-cover'
+        className='h-auto w-full rounded-md                   '
         alt={photo.alt_description}
         src={photo.urls.regular}
-        width={450}
-        height={photo.height > photo.width ? 600 : 300}
+        width={664}
+        height={930}
         placeholder='blur'
         blurDataURL={base64}
       />
