@@ -7,7 +7,7 @@ function PageHero() {
         data-testid='hero-img-1'
         className='w-full bg-[url("/hero-left.png")] bg-right bg-no-repeat'
       ></div>
-      <div className='mt-80 min-w-[clamp(21.875rem,80dvw,31.25rem)] space-y-4 text-center'>
+      <div className='flex min-w-[clamp(21.875rem,80dvw,31.25rem)] flex-col justify-center space-y-4 text-center'>
         <h1 className='text-4xl font-semibold'>Search</h1>
         <p className='text-sm font-light'>
           Search high-resolution images from Unsplash
