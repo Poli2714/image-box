@@ -13,8 +13,7 @@ async function PhotoAndTags({ keyword }: PhotoAndTagsProps) {
   const photo = await getAPhoto(keyword);
   const base64Result = await getBase64(photo.urls.thumb);
   const formattedtags = photo.tags.map((tag) => tag.title.replaceAll(' ', '-'));
-  const isLandscape =
-    photo.width > photo.height || photo.width === photo.height;
+  const isPortrait = photo.width < photo.height;
 
   return (
     <div className='grid h-full auto-rows-min gap-y-6'>
@@ -23,10 +22,11 @@ async function PhotoAndTags({ keyword }: PhotoAndTagsProps) {
           alt={photo.alt_description}
           blurDataURL={base64Result}
           className={`h-full w-full rounded-md object-contain object-top`}
-          height={isLandscape ? 200 : 500}
+          height={isPortrait ? 720 : 450}
           placeholder='blur'
           src={photo.urls.regular}
           width={400}
+          sizes='(max-width: 1280px) 100dvw, 50dvw'
         />
       </div>
       <ul className='flex flex-wrap gap-x-2 gap-y-1'>

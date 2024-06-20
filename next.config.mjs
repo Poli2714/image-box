@@ -4,6 +4,7 @@ import withPlaiceholder from '@plaiceholder/next';
 
 const nextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

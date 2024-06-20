@@ -29,6 +29,7 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
         src={photo.urls.regular}
         width={664}
         height={930}
+        sizes='(max-width: 722px) 100dvw, (max-width: 1096px) 50dvw, (max-width: 1448px) 33dvw, 25dvw'
         placeholder='blur'
         blurDataURL={base64}
       />
