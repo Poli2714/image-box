@@ -83,6 +83,7 @@ function EditCollectionNameForm({ collectionId }: EditCollectionNameFormProps) {
                 <FormLabel className='text-foreground'>Name</FormLabel>
                 <FormControl>
                   <Input
+                    autoFocus
                     className='h-10 font-light'
                     placeholder='Name here...'
                     type='text'

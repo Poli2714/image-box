@@ -61,7 +61,7 @@ function SearchCollections({ userCollections }: SearchCollectionsProps) {
                   <FormItem>
                     <FormControl>
                       <Input
-                        className='h-auto px-4 py-3 text-sm font-light'
+                        className='h-auto px-4 py-3 font-light'
                         placeholder='Search for your collections...'
                         type='search'
                         {...field}
