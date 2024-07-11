@@ -16,7 +16,7 @@ export default function GlobalError() {
   return (
     <html lang='en'>
       <body
-        className={`${beVietnamPro.className} flex min-h-dvh flex-col items-center`}
+        className={`${beVietnamPro.className} p flex h-dvh flex-col items-center justify-center px-8`}
       >
         <ThemeProvider
           attribute='class'

@@ -45,7 +45,11 @@ export async function getPhotos(
     // Better error handling needed!
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw new Error(
+        error.message.startsWith("Unexpected token 'R'")
+          ? 'Rate Limit Exceeded'
+          : error.message
+      );
     } else {
       throw new Error(String(error));
     }
