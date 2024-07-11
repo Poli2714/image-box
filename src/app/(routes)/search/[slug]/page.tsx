@@ -57,9 +57,16 @@ async function SearchKeyword({ params }: SearchKeywordProps) {
         <PaginationContent>
           <PaginationItem>
             {currentPage === 1 ? (
-              <Button className='gap-1 pl-2.5' disabled variant='outline'>
-                <ChevronLeftIcon size={16} />
-                Previous
+              <Button
+                asChild
+                className='gap-1 pl-2.5'
+                disabled
+                variant='outline'
+              >
+                <div>
+                  <ChevronLeftIcon size={16} />
+                  Previous
+                </div>
               </Button>
             ) : (
               <PaginationPrevious

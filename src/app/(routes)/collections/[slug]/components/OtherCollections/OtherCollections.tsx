@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/shadcn';
 import { CollectionGrid } from '../../../components';
 
 import { getUserCollections } from '@/db/handlers';
@@ -17,10 +18,13 @@ async function OtherCollections({
   );
 
   return filteredCollections.length > 0 ? (
-    <div className='space-y-8'>
-      <h2 className='text-2xl'>Other Collections</h2>
-      <CollectionGrid userCollections={filteredCollections} />
-    </div>
+    <>
+      <Separator />
+      <div className='space-y-8'>
+        <h2 className='text-2xl'>Other Collections</h2>
+        <CollectionGrid userCollections={filteredCollections} />
+      </div>
+    </>
   ) : null;
 }
 

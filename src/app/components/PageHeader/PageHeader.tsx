@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui';
 import { SearchForm } from '@/components/forms';
+
 import { getUserInitials } from '@/lib/getUserInitials/getUserInitials';
 
 async function PageHeader() {

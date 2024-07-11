@@ -12,7 +12,6 @@ import { getAllBase64 } from '@/lib/getBase64';
 import { getAPhoto } from '@/lib/getAPhoto';
 import { getCollectionInfo } from '@/db/handlers';
 import { OptimisticCollectionNameContextProvider } from '@/hooks/OptimisticCollectionNameProvider';
-import { Separator } from '@/components/ui/shadcn';
 
 type CollectionPageProps = {
   params: {
@@ -66,7 +65,6 @@ export default async function CollectionSlugPage({
       ) : (
         <div className='space-y-10'>
           <PhotoGrid photos={photos} base64results={base64Results} />
-          <Separator />
           <OtherCollections collectionId={params.slug} userId={user.id} />
         </div>
       )}

@@ -16,6 +16,8 @@ type PhotoCardProps = {
 function PhotoCard({ photo, base64 }: PhotoCardProps) {
   const [isHoveredOn, setIsHoveredOn] = useState(false);
 
+  const heigth = photo.height > photo.width ? 400 : 225;
+
   return (
     <div
       className='relative h-auto w-full max-w-full'
@@ -27,16 +29,16 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
         className='h-auto w-full rounded-md                   '
         alt={photo.alt_description}
         src={photo.urls.regular}
-        width={664}
-        height={930}
-        sizes='(max-width: 722px) 100dvw, (max-width: 1096px) 50dvw, (max-width: 1448px) 33dvw, 25dvw'
+        width={300}
+        height={heigth}
+        sizes='(min-width: 722px) 50dvw, (min-width: 1096px) 33dvw, (max-width: 1448px) 25dvw, 100dvw'
         placeholder='blur'
         blurDataURL={base64}
       />
       {!!isHoveredOn ? (
         <>
           <Link
-            className='absolute bottom-0 top-0 h-full w-full bg-foreground opacity-40 dark:bg-background'
+            className='absolute bottom-0 top-0 h-full w-full rounded-md bg-foreground opacity-40 dark:bg-background'
             href={`/photo/${photo.id}`}
           ></Link>
           <div className='absolute bottom-4 left-4 flex items-center space-x-2 hover:text-background [&>a:last-child]:text-secondary/90 hover:[&>a:last-child]:text-background dark:[&>a:last-child]:text-foreground/75 dark:hover:[&>a:last-child]:text-foreground'>

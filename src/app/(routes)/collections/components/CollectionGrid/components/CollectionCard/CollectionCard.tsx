@@ -47,7 +47,6 @@ function CollectionCard({ collection }: CollectionCardProps) {
                       ? '240px'
                       : '320px'
                 }
-                priority={true}
               />
             </div>
             {numberOfPhotos > 1 ? (
@@ -63,7 +62,6 @@ function CollectionCard({ collection }: CollectionCardProps) {
                     src={collection.collectionsToPhotos[1]?.photo.regular}
                     fill
                     sizes={numberOfPhotos > 2 ? '80px' : '160px'}
-                    priority={true}
                   />
                 </div>
                 {numberOfPhotos > 2 ? (
@@ -76,7 +74,6 @@ function CollectionCard({ collection }: CollectionCardProps) {
                       src={collection.collectionsToPhotos[2]?.photo.regular}
                       fill
                       sizes='80px'
-                      priority={true}
                     />
                   </div>
                 ) : null}

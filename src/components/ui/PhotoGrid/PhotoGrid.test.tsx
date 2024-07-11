@@ -1,7 +1,15 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import PhotoGrid from './PhotoGrid';
+
+vi.mock('./components', () => ({
+  PhotoCard: () => <div>Mock photo card</div>,
+}));
+
+vi.mock('@/hooks/useMediaQuery', () => ({
+  useMediaQuery: (query: string) => true,
+}));
 
 const photos = [
   {

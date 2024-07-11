@@ -1,7 +1,11 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import PageHero from './PageHero';
+
+vi.mock('@/components/forms', () => ({
+  SearchForm: () => <div>Mock search form</div>,
+}));
 
 test('renders PageHero', () => {
   render(<PageHero />);
