@@ -6,8 +6,7 @@ import SearchPageHeading from './SearchPageHeading';
 test('renders SearchPageHeading', () => {
   render(<SearchPageHeading slug='los angeles' />);
 
-  const heading = screen.getByRole('heading');
-
-  expect(heading).toBeInTheDocument();
-  expect(heading).toHaveTextContent('Los angeles');
+  expect(
+    screen.getByRole('heading', { name: 'Los angeles' })
+  ).toBeInTheDocument();
 });

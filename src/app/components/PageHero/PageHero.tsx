@@ -2,7 +2,7 @@ import { SearchForm } from '@/components/forms';
 
 function PageHero() {
   return (
-    <main className='flex min-h-[calc(100dvh-73px)] gap-x-[clamp(0.5rem,2dvw,3rem)] sm:gap-x-[clamp(1rem,5dvw,3rem)]'>
+    <main className='flex flex-1 gap-x-[clamp(0.5rem,2dvw,3rem)] sm:gap-x-[clamp(1rem,5dvw,3rem)]'>
       <div
         data-testid='hero-img-1'
         className='w-full bg-[url("/hero-left.png")] bg-right bg-no-repeat'

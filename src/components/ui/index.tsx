@@ -18,6 +18,8 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import LatestCollections from './LatestCollections/LatestCollections';
+import MainSectionLayout from './MainSectionLayout/MainSectionLayout';
+import PhotoGrid from './PhotoGrid/PhotoGrid';
 import ReturnHome from './ReturnHome/ReturnHome';
 import { Skeleton } from './skeleton';
 
@@ -40,6 +42,8 @@ export {
   DropdownMenuItem,
   DropdownMenuTrigger,
   LatestCollections,
+  MainSectionLayout,
+  PhotoGrid,
   ReturnHome,
   Skeleton,
 };

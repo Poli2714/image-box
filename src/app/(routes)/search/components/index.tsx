@@ -1,3 +1,3 @@
-import SearchHeader from './SearchHeader/SearchHeader';
+import SearchBar from './SearchBar/SearchBar';
 
-export { SearchHeader };
+export { SearchBar };

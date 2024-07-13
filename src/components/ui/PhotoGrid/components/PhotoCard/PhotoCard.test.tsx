@@ -3,52 +3,37 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import PhotoCard from './PhotoCard';
-
-const photo = {
-  id: 'test1',
-  width: 400,
-  height: 300,
-  alt_description: 'test_desc',
-  urls: {
-    regular: 'https://test',
-    thumb: 'test',
-  },
-  links: {
-    download: 'test.jpeg',
-  },
-  user: {
-    name: 'test name',
-    portfolio_url: 'test url',
-    links: {
-      html: 'test.html',
-    },
-    profile_image: {
-      small: 'https://test.jpeg',
-    },
-  },
-};
+import __photo__ from '@/mocks/mockData/__photo__.json';
 
 test('renders PhotoCard', () => {
-  render(<PhotoCard photo={photo} base64='hjdskhjsdhlfjs' />);
+  render(<PhotoCard photo={__photo__} base64='hjdskhjsdhlfjs' />);
+
+  const links = screen.getAllByRole('link');
 
   expect(screen.getByTestId('photo-card')).toBeInTheDocument();
-  expect(screen.getByRole('img')).toBeInTheDocument();
+  expect(links).toHaveLength(1);
+  expect(links[0]).toHaveAttribute('href', '/photo/test1');
   expect(screen.getAllByRole('img')).toHaveLength(1);
 });
 
 test('renders extra information about photo author and download button when user hovers on photo', async () => {
   const user = userEvent.setup();
 
-  render(<PhotoCard photo={photo} base64='sdhjfshjfdkj' />);
+  render(<PhotoCard photo={__photo__} base64='sdhjfshjfdkj' />);
   const photoCard = screen.getByTestId('photo-card');
 
   await user.hover(photoCard);
+  const links = screen.getAllByRole('link');
 
-  expect(screen.getAllByRole('link')).toHaveLength(4);
-  expect(screen.getByRole('link', { name: 'Download' })).toBeInTheDocument();
+  expect(links).toHaveLength(4);
+  expect(links[0]).toHaveAttribute('href', '/photo/test1');
+  expect(links[1]).toHaveAttribute('href', 'www.portfolio-url.com');
+  expect(links[2]).toHaveAttribute('href', 'www.portfolio-url.com');
+  expect(links[3]).toHaveTextContent(/^download$/i);
+  expect(links[3]).toHaveAttribute('href', 'https://download.com');
   expect(screen.getAllByRole('img')).toHaveLength(2);
 
   await user.unhover(photoCard);
-  expect(screen.queryByRole('link')).not.toBeInTheDocument();
   expect(screen.getAllByRole('img')).toHaveLength(1);
+  expect(screen.getAllByRole('link')).toHaveLength(1);
 });

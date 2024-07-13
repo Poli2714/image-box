@@ -1,18 +1,25 @@
-import { SearchHeader } from './components';
+import { PageHeader } from '@/components/views';
+import { SearchBar } from './components';
 
-type SearchLayout = {
+import { getSessionUserInfo } from '@/lib/services/getSessionUserInfo/getSessionUserInfo';
+
+type SearchLayoutProps = {
   children: React.ReactNode;
 };
 
-function SearchLayout({ children }: SearchLayout) {
+export default async function SearchLayout({ children }: SearchLayoutProps) {
+  const { isUserLoggedIn, userInitials, userPicture } =
+    await getSessionUserInfo();
+
   return (
     <>
-      <SearchHeader />
-      <main className='px-[clamp(1rem,4dvw,3rem)] py-8 2xl:container'>
-        {children}
-      </main>
+      <PageHeader
+        isUserLoggedIn={isUserLoggedIn}
+        userInitials={userInitials}
+        userPicture={userPicture}
+      />
+      <SearchBar />
+      {children}
     </>
   );
 }
-
-export default SearchLayout;

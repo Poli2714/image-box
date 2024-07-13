@@ -1,123 +1,54 @@
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import { notFound, redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
-import { Button } from '@/components/ui';
-import { NoPhotosFound, SearchPageHeading } from './components';
+import { MainSectionLayout, PhotoGrid } from '@/components/ui';
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/shadcn';
-import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
+  NoPhotosFound,
+  PageLimitReached,
+  PhotoPagination,
+  SearchPageHeading,
+} from './components';
 
-import { formatKeyword } from '@/lib/formatKeyword';
-import { getAllBase64 } from '@/lib/getBase64';
-import { getPageNumbers } from '@/lib/getPageNumbers/getPageNumbers';
-import { getPhotos } from '@/lib/getPhotos';
+import { getSearchResult } from '@/lib/services/getSearchResult/getSearchResult';
 import { SearchPageParams } from '@/types/searchPage';
 
-type SearchKeywordProps = {
+type SearchSlugPageProps = {
   params: SearchPageParams;
 };
 
-async function SearchKeyword({ params }: SearchKeywordProps) {
-  const decodedSlug = decodeURIComponent(params.slug);
-  const colonIndex = decodedSlug.indexOf(':pg-');
-  const keyword =
-    colonIndex > 0 ? decodedSlug.slice(0, colonIndex) : decodedSlug;
-  const formattedKeyword = formatKeyword(keyword);
-  if (formattedKeyword.length === 0) redirect('/search');
-
-  const currentPage =
-    colonIndex > 0 ? Number(decodedSlug.slice(colonIndex + 4)) : 1;
-
-  const result = await getPhotos(formattedKeyword, currentPage);
-  const totalPages = result.totalPages > 200 ? 200 : result.totalPages;
-  if (currentPage > 1 && currentPage > totalPages) {
-    notFound();
-  }
-  if (result.totalPages === 0) {
-    return <NoPhotosFound keyword={formattedKeyword} />;
+export default async function SearchSlugPage({ params }: SearchSlugPageProps) {
+  // Handle the case when a user manually searches for space or tab characters
+  if (params.slug.length === 0) {
+    redirect('/search');
   }
 
-  const pageNumbers = getPageNumbers(currentPage, totalPages);
+  const {
+    base64results,
+    currentPage,
+    displayedPageNumbers,
+    formattedQuery,
+    hasPageLimitReached,
+    photos,
+    totalPages,
+    urlQuery,
+  } = await getSearchResult(params.slug);
 
-  const photoUrls = result.photos.map((photo) => photo.urls.thumb);
-  const base64results = await getAllBase64(photoUrls);
+  if (hasPageLimitReached) {
+    return <PageLimitReached keyword={formattedQuery} />;
+  }
+  if (totalPages === 0) {
+    return <NoPhotosFound keyword={formattedQuery} />;
+  }
 
   return (
-    <div className='space-y-8'>
-      <SearchPageHeading slug={formattedKeyword} />
-      <PhotoGrid photos={result.photos} base64results={base64results} />
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            {currentPage === 1 ? (
-              <Button
-                asChild
-                className='gap-1 pl-2.5'
-                disabled
-                variant='outline'
-              >
-                <div>
-                  <ChevronLeftIcon size={16} />
-                  Previous
-                </div>
-              </Button>
-            ) : (
-              <PaginationPrevious
-                href={
-                  currentPage - 1 === 1
-                    ? `/search/${keyword}`
-                    : `/search/${keyword}:pg-${currentPage - 1}`
-                }
-              />
-            )}
-          </PaginationItem>
-          {pageNumbers.map((num) => (
-            <PaginationItem key={num}>
-              {num === currentPage ? (
-                <Button disabled size='icon' variant='outline'>
-                  {num}
-                </Button>
-              ) : (
-                <PaginationLink
-                  href={
-                    num === 1
-                      ? `/search/${keyword}`
-                      : `/search/${keyword}:pg-${num}`
-                  }
-                >
-                  {num}
-                </PaginationLink>
-              )}
-            </PaginationItem>
-          ))}
-          {currentPage + 1 < totalPages && pageNumbers.length === 3 ? (
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-          ) : null}
-          <PaginationItem>
-            {currentPage + 1 > totalPages ? (
-              <Button className='gap-1 pr-2.5' disabled variant='outline'>
-                Next
-                <ChevronRightIcon size={16} />
-              </Button>
-            ) : (
-              <PaginationNext
-                href={`/search/${keyword}:pg-${currentPage + 1}`}
-              />
-            )}
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    </div>
+    <MainSectionLayout className='space-y-8'>
+      <SearchPageHeading slug={formattedQuery} />
+      <PhotoGrid photos={photos} base64results={base64results} />
+      <PhotoPagination
+        currentPage={currentPage}
+        slug={urlQuery}
+        displayedPageNumbers={displayedPageNumbers}
+        totalPages={totalPages}
+      />
+    </MainSectionLayout>
   );
 }
-
-export default SearchKeyword;

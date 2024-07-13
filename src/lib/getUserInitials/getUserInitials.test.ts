@@ -11,9 +11,9 @@ test('returns E when only firstname is provided', () => {
 });
 
 test('returns M when only lastName is provided', () => {
-  expect(getUserInitials(undefined, 'mehdiyev')).toEqual('M');
+  expect(getUserInitials(null, 'mehdiyev')).toEqual('M');
 });
 
 test('return empty string when niether firstName nor lastName is provided', () => {
-  expect(getUserInitials(undefined, undefined)).toEqual('');
+  expect(getUserInitials(null, null)).toEqual('');
 });

@@ -1,6 +1,6 @@
 export const getUserInitials = (
-  firstName: string | null | undefined,
-  lastName: string | null | undefined
+  firstName: string | null,
+  lastName: string | null
 ) => {
   let userInitials = '';
   if (!!firstName) {

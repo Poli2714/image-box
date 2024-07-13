@@ -1,6 +1,7 @@
 import { SearchXIcon } from 'lucide-react';
 
 import { SearchPageHeading } from '..';
+import { MainSectionLayout } from '@/components/ui';
 
 type NoPhotosFoundProps = {
   keyword: string;
@@ -8,9 +9,9 @@ type NoPhotosFoundProps = {
 
 function NoPhotosFound({ keyword }: NoPhotosFoundProps) {
   return (
-    <>
-      <SearchPageHeading slug={keyword} />
-      <div className='mt-24 flex flex-col items-center space-y-4'>
+    <MainSectionLayout className='flex flex-1 flex-col'>
+      <SearchPageHeading className='mb-0' slug={keyword} />
+      <div className='flex flex-1 flex-col items-center justify-center space-y-4'>
         <SearchXIcon
           className='mb-4 text-secondary'
           data-testid='search-icon'
@@ -20,7 +21,7 @@ function NoPhotosFound({ keyword }: NoPhotosFoundProps) {
           Unfortunately, there are no photos with the requested keyword
         </p>
       </div>
-    </>
+    </MainSectionLayout>
   );
 }
 

@@ -1,0 +1,23 @@
+{
+  "id": "test1",
+  "width": 300,
+  "height": 225,
+  "alt_description": "test description",
+  "urls": {
+    "regular": "https://regular-url.com",
+    "thumb": "https://thumb-url.com"
+  },
+  "links": {
+    "download": "https://download.com"
+  },
+  "user": {
+    "name": "test name",
+    "portfolio_url": "www.portfolio-url.com",
+    "links": {
+      "html": "test.html"
+    },
+    "profile_image": {
+      "small": "https://small-img.com"
+    }
+  }
+}

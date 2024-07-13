@@ -16,5 +16,5 @@ test('renders NoPhotosFound', () => {
   ).toBeInTheDocument();
   expect(screen.getByTestId('search-icon')).toBeInTheDocument();
   expect(paragraph).toBeInTheDocument();
-  expect(paragraph.textContent).toMatch(/^unfortunately,.*keyword$/i);
+  expect(paragraph).toHaveTextContent(/^unfortunately,.*keyword$/i);
 });

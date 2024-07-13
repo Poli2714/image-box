@@ -20,27 +20,25 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
 
   return (
     <div
-      className='relative h-auto w-full max-w-full'
+      className='relative h-auto w-full max-w-full rounded-md bg-foreground dark:bg-background'
       data-testid='photo-card'
       onMouseEnter={() => setIsHoveredOn(true)}
       onMouseLeave={() => setIsHoveredOn(false)}
     >
-      <Image
-        className='h-auto w-full rounded-md                   '
-        alt={photo.alt_description}
-        src={photo.urls.regular}
-        width={300}
-        height={heigth}
-        sizes='(min-width: 722px) 50dvw, (min-width: 1096px) 33dvw, (max-width: 1448px) 25dvw, 100dvw'
-        placeholder='blur'
-        blurDataURL={base64}
-      />
+      <Link className='rounded-md hover:opacity-70' href={`/photo/${photo.id}`}>
+        <Image
+          className='h-auto w-full rounded-md'
+          alt={photo.alt_description}
+          src={photo.urls.regular}
+          width={300}
+          height={heigth}
+          sizes='(min-width: 722px) 50dvw, (min-width: 1096px) 33dvw, (max-width: 1448px) 25dvw, 100dvw'
+          placeholder='blur'
+          blurDataURL={base64}
+        />
+      </Link>
       {!!isHoveredOn ? (
         <>
-          <Link
-            className='absolute bottom-0 top-0 h-full w-full rounded-md bg-foreground opacity-40 dark:bg-background'
-            href={`/photo/${photo.id}`}
-          ></Link>
           <div className='absolute bottom-4 left-4 flex items-center space-x-2 hover:text-background [&>a:last-child]:text-secondary/90 hover:[&>a:last-child]:text-background dark:[&>a:last-child]:text-foreground/75 dark:hover:[&>a:last-child]:text-foreground'>
             <AuthorImageAndName
               portfolioUrl={photo.user.portfolio_url}
@@ -51,7 +49,7 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
           </div>
           <Button
             asChild
-            className='absolute bottom-4 right-4 bg-background text-foreground hover:bg-input dark:bg-foreground dark:text-background dark:hover:bg-foreground/80'
+            className='absolute bottom-4 right-4 bg-background text-foreground hover:bg-background dark:bg-foreground dark:text-background'
           >
             <Link href={photo.links.download}>Download</Link>
           </Button>

@@ -14,8 +14,10 @@ export const createCollection = async (
   formData: CreateCollectionFormSchemaProps
 ) => {
   const { getUser, isAuthenticated } = getKindeServerSession();
-  const isUserSignedIn = await isAuthenticated();
-  const user = await getUser();
+  const [isUserSignedIn, user] = await Promise.all([
+    isAuthenticated(),
+    getUser(),
+  ]);
 
   if (!isUserSignedIn || !user) return;
 

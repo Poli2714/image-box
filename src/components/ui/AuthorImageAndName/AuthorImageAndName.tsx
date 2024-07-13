@@ -18,7 +18,6 @@ function AuthorImageAndName({
     <>
       <Link href={portfolioUrl ?? socialUrl}>
         <Image
-          // Look at it later! Show alt when image is present maybe?
           alt={`${name}'s picture`}
           className='rounded-full'
           src={imageUrl}

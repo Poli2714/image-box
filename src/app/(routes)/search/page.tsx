@@ -1,19 +1,19 @@
 import { notFound } from 'next/navigation';
 
-import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
+import { MainSectionLayout, PhotoGrid } from '@/components/ui';
 
-import { getAllBase64 } from '@/lib/getBase64';
-import { getPhotos } from '@/lib/getPhotos';
-
-const query = 'los angeles';
+import { getSearchHomePagePhotoResults } from '@/lib/services/getSearchHomePagePhotoResults/getSearchHomePagePhotoResults';
 
 export default async function SearchPage() {
-  const result = await getPhotos(query);
-  if (result.photos.length === 0) {
+  const { photos, base64results } = await getSearchHomePagePhotoResults();
+
+  if (photos.length === 0) {
     notFound();
   }
-  const allPhotoUrls = result.photos.map((photo) => photo.urls.thumb);
-  const base64results = await getAllBase64(allPhotoUrls);
 
-  return <PhotoGrid photos={result.photos} base64results={base64results} />;
+  return (
+    <MainSectionLayout>
+      <PhotoGrid photos={photos} base64results={base64results} />
+    </MainSectionLayout>
+  );
 }
