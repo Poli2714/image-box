@@ -3,6 +3,7 @@ import {
   CollectionsHeader,
   NoCollectionMessage,
 } from './components';
+import { MainSectionLayout } from '@/components/ui';
 import { PageHeader } from '@/components/views';
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
 
@@ -29,8 +30,10 @@ export default async function CollectionsPage() {
         userInitials={userInitials}
         userPicture={userPicture}
       />
-      <CollectionsHeader />
-      <CollectionGrid userCollections={userCollections} />
+      <MainSectionLayout className='flex flex-1 flex-col gap-y-6'>
+        <CollectionsHeader />
+        <CollectionGrid userCollections={userCollections} />
+      </MainSectionLayout>
     </>
   );
 }

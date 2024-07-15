@@ -3,6 +3,7 @@ import {
   NoPhotosMessage,
   OtherCollections,
 } from './components';
+import { MainSectionLayout } from '@/components/ui';
 import { PageHeader } from '@/components/views';
 import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
@@ -43,22 +44,24 @@ export default async function CollectionSlugPage({
         userInitials={userInitials}
         userPicture={userPicture}
       />
-      <OptimisticCollectionNameContextProvider
-        collectionName={{ name: userCollection.name }}
-      >
-        <CollectionSlugHeader
-          collectionId={params.slug}
-          createdAt={userCollection.createdAt}
-        />
-      </OptimisticCollectionNameContextProvider>
-      {photoIds.length === 0 ? (
-        <NoPhotosMessage />
-      ) : (
-        <div className='space-y-10'>
-          <PhotoGrid photos={photos} base64results={base64Results} />
-          <OtherCollections collectionId={params.slug} userId={user.id} />
-        </div>
-      )}
+      <MainSectionLayout className='flex flex-1 flex-col gap-y-6'>
+        <OptimisticCollectionNameContextProvider
+          collectionName={{ name: userCollection.name }}
+        >
+          <CollectionSlugHeader
+            collectionId={params.slug}
+            createdAt={userCollection.createdAt}
+          />
+        </OptimisticCollectionNameContextProvider>
+        {photoIds.length === 0 ? (
+          <NoPhotosMessage />
+        ) : (
+          <div className='space-y-10'>
+            <PhotoGrid photos={photos} base64results={base64Results} />
+            <OtherCollections collectionId={params.slug} userId={user.id} />
+          </div>
+        )}
+      </MainSectionLayout>
     </>
   );
 }
