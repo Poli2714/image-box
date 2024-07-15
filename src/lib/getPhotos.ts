@@ -3,7 +3,7 @@ import 'server-only';
 import { Photo } from '@/types/Images';
 
 const BASE_URL = 'https://api.unsplash.com/search/photos?';
-const NUMBER_OF_PHOTOS_PER_PAGE = 21;
+const NUMBER_OF_PHOTOS_PER_PAGE = 12;
 
 export async function getPhotos(
   query: string,
