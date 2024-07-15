@@ -1,16 +1,14 @@
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-
 import {
   CollectionSlugHeader,
   NoPhotosMessage,
   OtherCollections,
 } from './components';
+import { PageHeader } from '@/components/views';
 import PhotoGrid from '@/components/ui/PhotoGrid/PhotoGrid';
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
 
-import { getAllBase64 } from '@/lib/getBase64';
-import { getAPhoto } from '@/lib/getAPhoto';
-import { getCollectionInfo } from '@/db/handlers';
+import { getCollectionSlugData } from '@/lib/services/getCollectionSlugData/getCollectionSlugData';
+import { getSessionUserInfo } from '@/lib/services/getSessionUserInfo/getSessionUserInfo';
 import { OptimisticCollectionNameContextProvider } from '@/hooks/OptimisticCollectionNameProvider';
 
 type CollectionPageProps = {
@@ -22,36 +20,29 @@ type CollectionPageProps = {
 export default async function CollectionSlugPage({
   params,
 }: CollectionPageProps) {
-  const { getUser, isAuthenticated } = getKindeServerSession();
-  const [user, isUserSignedIn] = await Promise.all([
-    getUser(),
-    isAuthenticated(),
+  const [
+    { isUserLoggedIn, user, userInitials, userPicture },
+    { base64Results, photoIds, photos, userCollection },
+  ] = await Promise.all([
+    getSessionUserInfo(),
+    getCollectionSlugData(params.slug),
   ]);
 
-  if (!isUserSignedIn || !user) {
+  if (!isUserLoggedIn || !user) {
     return <SignInAlert />;
   }
 
-  const userCollection = await getCollectionInfo(params.slug);
   if (!userCollection) {
     throw new Error('Something went wrong');
   }
 
-  let photoIds: Array<string> = [];
-  let photoUrls: Array<string> = [];
-
-  userCollection.collectionsToPhotos.forEach((photoInfo) => {
-    photoIds.push(photoInfo.photo.id);
-    photoUrls.push(photoInfo.photo.thumb);
-  });
-
-  const [photos, base64Results] = await Promise.all([
-    Promise.all(photoIds.map((photoId) => getAPhoto(photoId))),
-    getAllBase64(photoUrls),
-  ]);
-
   return (
     <>
+      <PageHeader
+        isUserLoggedIn={isUserLoggedIn}
+        userInitials={userInitials}
+        userPicture={userPicture}
+      />
       <OptimisticCollectionNameContextProvider
         collectionName={{ name: userCollection.name }}
       >

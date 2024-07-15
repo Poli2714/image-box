@@ -14,5 +14,7 @@ vi.mock('@/hooks/OptimisticCollectionNameProvider', () => ({
 test('renders CollectionName', () => {
   render(<CollectionName />);
 
-  expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { level: 1, name: 'mock name' })
+  ).toBeInTheDocument();
 });

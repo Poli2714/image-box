@@ -1,22 +1,19 @@
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-
 import {
   CollectionGrid,
   CollectionsHeader,
   NoCollectionMessage,
 } from './components';
+import { PageHeader } from '@/components/views';
 import SignInAlert from '@/components/ui/SignInAlert/SignInAlert';
 
+import { getSessionUserInfo } from '@/lib/services/getSessionUserInfo/getSessionUserInfo';
 import { getUserCollections } from '@/db/handlers';
 
 export default async function CollectionsPage() {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const [isUserSignedIn, user] = await Promise.all([
-    isAuthenticated(),
-    getUser(),
-  ]);
+  const { isUserLoggedIn, user, userInitials, userPicture } =
+    await getSessionUserInfo();
 
-  if (!isUserSignedIn || !user) {
+  if (!isUserLoggedIn || !user) {
     return <SignInAlert />;
   }
 
@@ -27,6 +24,11 @@ export default async function CollectionsPage() {
 
   return (
     <>
+      <PageHeader
+        isUserLoggedIn={isUserLoggedIn}
+        userInitials={userInitials}
+        userPicture={userPicture}
+      />
       <CollectionsHeader />
       <CollectionGrid userCollections={userCollections} />
     </>
