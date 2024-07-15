@@ -6,45 +6,26 @@ import {
   MinusIcon,
   PlusIcon,
 } from 'lucide-react';
-import { useState, useTransition } from 'react';
 
 import { Button } from '@/components/ui';
 import { CollectionInfo, LatestPhotoInCollection } from './components';
 
-import { addPhotoToCollection } from '@/actions/addPhotoToCollection';
-import { removePhoto } from '@/actions/removePhoto';
-import { usePhotoContext } from '@/hooks/PhotoIdProvider';
 import { UserCollection } from '@/types/collections';
+import { useAddRemovePhoto } from '@/hooks/useAddRemovePhoto';
 
 type AddRemovePhotoButtonProps = {
   userCollection: UserCollection;
 };
 
 function AddRemovePhotoButton({ userCollection }: AddRemovePhotoButtonProps) {
-  const [isPending, startTransition] = useTransition();
-  const [isHoveredOn, setIsHoveredOn] = useState(false);
-  const { photo } = usePhotoContext();
-  const numberOfPhotos = userCollection.collectionsToPhotos.length;
-  const isPhotoInCollection = userCollection.collectionsToPhotos.some(
-    (collectionToPhoto) => collectionToPhoto.photo?.id === photo.id
-  );
-
-  const photoAction = () =>
-    isPhotoInCollection
-      ? startTransition(
-          async () => await removePhoto(userCollection.id, photo.id)
-        )
-      : startTransition(
-          async () =>
-            await addPhotoToCollection({
-              altDescription: photo?.altDescription,
-              collectionId: userCollection.id,
-              photoId: photo?.id,
-              slug: photo?.slug,
-              regular: photo?.regular,
-              thumb: photo?.thumb,
-            })
-        );
+  const {
+    isHoveredOn,
+    isPending,
+    isPhotoInCollection,
+    numberOfPhotos,
+    photoAction,
+    setIsHoveredOn,
+  } = useAddRemovePhoto(userCollection);
 
   return (
     <form action={photoAction} name='add-remove-photo-form'>

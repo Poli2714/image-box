@@ -7,11 +7,13 @@ test('renders CollectionInfo with no photos', () => {
   render(
     <CollectionInfo numberOfPhotosInCollection={0} collectionName='Test' />
   );
+  const paragraph = screen.getByRole('paragraph');
 
   expect(screen.getByRole('heading', { level: 3 }).textContent).toMatch(
     /^test$/i
   );
-  expect(screen.getByRole('paragraph').textContent).toMatch(/^no photos yet$/i);
+  expect(paragraph).toBeInTheDocument();
+  expect(paragraph).toHaveTextContent(/^no photos yet$/i);
 });
 
 test('renders CollectionInfo with 1 photo', () => {
@@ -22,7 +24,7 @@ test('renders CollectionInfo with 1 photo', () => {
   expect(screen.getByRole('heading', { level: 3 }).textContent).toMatch(
     /^test 1$/i
   );
-  expect(screen.getByRole('paragraph').textContent).toEqual('1 photo');
+  expect(screen.getByRole('paragraph')).toHaveTextContent('1 photo');
 });
 
 test('renders CollectionInfo with 3 photos', () => {
@@ -33,5 +35,5 @@ test('renders CollectionInfo with 3 photos', () => {
   expect(screen.getByRole('heading', { level: 3 }).textContent).toMatch(
     /^test 2$/i
   );
-  expect(screen.getByRole('paragraph').textContent).toEqual('3 photos');
+  expect(screen.getByRole('paragraph')).toHaveTextContent('3 photos');
 });

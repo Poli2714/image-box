@@ -39,14 +39,13 @@ function PhotoCard({ photo, base64 }: PhotoCardProps) {
       </Link>
       {!!isHoveredOn ? (
         <>
-          <div className='absolute bottom-4 left-4 flex items-center space-x-2 hover:text-background [&>a:last-child]:text-secondary/90 hover:[&>a:last-child]:text-background dark:[&>a:last-child]:text-foreground/75 dark:hover:[&>a:last-child]:text-foreground'>
-            <AuthorImageAndName
-              portfolioUrl={photo.user.portfolio_url}
-              socialUrl={photo.user.links.html}
-              name={photo.user.name}
-              imageUrl={photo.user.profile_image.small}
-            />
-          </div>
+          <AuthorImageAndName
+            className='absolute bottom-4 left-4 hover:text-background [&>a:last-child]:text-secondary/90 hover:[&>a:last-child]:text-background dark:[&>a:last-child]:text-foreground/75 dark:hover:[&>a:last-child]:text-foreground'
+            portfolioUrl={photo.user.portfolio_url}
+            socialUrl={photo.user.links.html}
+            name={photo.user.name}
+            imageUrl={photo.user.profile_image.small}
+          />
           <Button
             asChild
             className='absolute bottom-4 right-4 bg-background text-foreground hover:bg-background dark:bg-foreground dark:text-background'

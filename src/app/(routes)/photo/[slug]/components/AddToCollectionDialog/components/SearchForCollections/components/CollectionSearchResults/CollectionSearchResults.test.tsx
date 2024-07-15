@@ -1,8 +1,12 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import CollectionSearchResults from './CollectionSearchResults';
 import { mockUserCollections1 } from '@/mocks/mockData/userCollections';
+
+vi.mock('@/components/buttons', () => ({
+  AddRemovePhotoButton: () => <div>Mock button</div>,
+}));
 
 test('renders CollectionSearchResults with 3 list items', () => {
   render(<CollectionSearchResults collections={mockUserCollections1} />);

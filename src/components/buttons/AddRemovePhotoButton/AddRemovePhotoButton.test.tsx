@@ -6,13 +6,13 @@ import AddRemovePhotoButton from './AddRemovePhotoButton';
 import { PhotoProvider } from '@/hooks/PhotoIdProvider';
 import { UserCollection } from '@/types/collections';
 
-vi.mock('@/components/buttons/AddRemovePhotoButton/components', () => ({
-  CollectionInfo: vi.fn(() => (
+vi.mock('./components', () => ({
+  CollectionInfo: () => (
     <div data-testid='collection-info'>Mock Collection Info</div>
-  )),
-  LatestPhotoInCollection: vi.fn(() => (
+  ),
+  LatestPhotoInCollection: () => (
     <div data-testid='latest-photo'>Mock Latest Photo</div>
-  )),
+  ),
 }));
 
 const userCollection1 = {
@@ -25,7 +25,8 @@ const userCollection1 = {
         id: '123',
         altDescription: 'test description1',
         slug: 'testSlug1',
-        thumb: 'test src1',
+        regular: 'test-regular.png',
+        thumb: 'test-thumb.png',
       },
     },
   ],
@@ -41,7 +42,8 @@ const userCollection2 = {
         id: '123456',
         altDescription: 'test description2',
         slug: 'testSlug2',
-        thumb: 'test src2',
+        regular: 'test-regular.png',
+        thumb: 'test-thumb.png',
       },
     },
   ],
@@ -58,7 +60,8 @@ function MockParentComponent({ userCollection }: MockParentComponentProps) {
         altDescription: 'test description',
         id: '123456',
         slug: 'test-slug',
-        thumb: 'https://test.com',
+        regular: 'https://test-regular.png',
+        thumb: 'https://test-thumb.png',
       }}
     >
       <AddRemovePhotoButton userCollection={userCollection} />

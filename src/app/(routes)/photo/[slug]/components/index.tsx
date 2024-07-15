@@ -1,5 +1,5 @@
-import AddToCollectionBtn from './AddToCollectionBtn/AddToCollectionBtn';
+import AddToCollectionDialog from './AddToCollectionDialog/AddToCollectionDialog';
 import DownloadLink from './DownloadLink/DownloadLink';
 import PhotoAndTags from './PhotoAndTags/PhotoAndTags';
 
-export { AddToCollectionBtn, DownloadLink, PhotoAndTags };
+export { AddToCollectionDialog, DownloadLink, PhotoAndTags };

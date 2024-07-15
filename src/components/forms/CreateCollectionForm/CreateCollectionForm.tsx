@@ -1,9 +1,6 @@
 'use client';
 
 import { Loader2Icon } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { useTransition } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -15,25 +12,10 @@ import {
   Input,
 } from '@/components/forms';
 
-import {
-  createCollectionFormSchema,
-  CreateCollectionFormSchemaProps,
-} from '@/validations/CreateCollectionFormValidation';
-import { createCollection } from '@/actions/createCollection';
+import { useCreateCollectionForm } from '@/hooks/useCreateCollectionForm';
 
 function CreateCollectionForm() {
-  const form = useForm<CreateCollectionFormSchemaProps>({
-    resolver: zodResolver(createCollectionFormSchema),
-    defaultValues: {
-      name: '',
-    },
-  });
-  const [isPending, startTransition] = useTransition();
-
-  const onSubmit = (data: CreateCollectionFormSchemaProps) => {
-    form.reset();
-    startTransition(async () => await createCollection(data));
-  };
+  const { form, isPending, onSubmit } = useCreateCollectionForm();
 
   return (
     <Form {...form}>

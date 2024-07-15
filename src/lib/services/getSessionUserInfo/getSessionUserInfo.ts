@@ -16,5 +16,5 @@ export async function getSessionUserInfo() {
 
   const userPicture = user?.picture ?? undefined;
 
-  return { isUserLoggedIn, userInitials, userPicture };
+  return { isUserLoggedIn, user, userInitials, userPicture };
 }

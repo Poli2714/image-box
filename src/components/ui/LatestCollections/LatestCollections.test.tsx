@@ -1,13 +1,15 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import LatestCollections from './LatestCollections';
 import { mockUserCollections1 } from '@/mocks/mockData/userCollections';
 
-const userCollections = mockUserCollections1;
+vi.mock('@/components/buttons', () => ({
+  AddRemovePhotoButton: () => <div>Mock button</div>,
+}));
 
 test('renders LatestCollections', () => {
-  render(<LatestCollections latestCollections={userCollections} />);
+  render(<LatestCollections latestCollections={mockUserCollections1} />);
 
   expect(screen.getByRole('heading', { level: 2 })).toBeInTheDocument();
   expect(screen.getByRole('list')).toBeInTheDocument();
